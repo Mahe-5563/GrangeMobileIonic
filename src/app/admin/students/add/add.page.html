@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Module</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="add_body">
+  <ion-card>
+    <ion-card-content>
+      <ion-input 
+        id="studentID"
+        class="input_field"
+        type="text" 
+        label="Student Id"
+        labelPlacement="floating"
+        [value]="studentDetails.studentID"
+        [readonly]="true"
+        [disabled]="true"
+      >
+      </ion-input>
+      <ion-input
+        id="firstName"
+        class="input_field"
+        type="text" 
+        label="First Name *"
+        labelPlacement="floating"
+        [value]="studentDetails.firstName"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="lastName"
+        class="input_field"
+        type="text" 
+        label="Last Name *"
+        labelPlacement="floating"
+        [value]="studentDetails.lastName"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="moduleNo1"
+        class="input_field"
+        type="text" 
+        label="Module One *"
+        labelPlacement="floating"
+        [value]="studentDetails.moduleNo1"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="moduleNo2"
+        class="input_field"
+        type="text" 
+        label="Module Two *"
+        labelPlacement="floating"
+        [value]="studentDetails.moduleNo2"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="courseID"
+        class="input_field"
+        type="text" 
+        label="Course ID *"
+        labelPlacement="floating"
+        [value]="studentDetails.courseID"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-button 
+        class="btn-add-module"
+        (click)="verifyAllDetails()"
+      >
+        Add Module
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

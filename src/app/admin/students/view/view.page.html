@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="student">
+      {{student.studentID}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="student">
+  <div class="content">
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Student ID</strong></h2>
+        <h5>{{student.studentID}}</h5>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>First Name</strong></h2>
+        <ion-input
+          id="firstName"
+          class="input-field"
+          type="text" 
+          [value]="student.firstName"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Last Name</strong></h2>
+        <ion-input
+          id="lastName"
+          class="input-field"
+          type="text" 
+          [value]="student.lastName"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card *ngIf="modules">
+      <ion-card-content>
+        <h2><strong>Modules</strong></h2>
+        <ion-list class="card-list" *ngFor="let module of modules">
+          <h5>{{module.moduleNo}} - {{module.moduleName}}</h5>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="lecturers">
+      <ion-card-content>
+        <h2><strong>Staff(s)</strong></h2>
+        <ion-list class="card-list" *ngFor="let lecturer of lecturers">
+          <h5>{{lecturer.firstName}} {{lecturer.lastName}}</h5>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Course ID</strong></h2>
+        <ion-input
+          id="courseID"
+          class="input-field"
+          type="text" 
+          [value]="student.courseID"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+  
+  <div class="bottom-nav-bar">
+    <ion-button
+      (click)="deletionConfirmation()"
+    >
+      Delete
+    </ion-button>
+    <ion-button
+      (click)="saveStudentDetails()"
+    >
+      Save
+    </ion-button>
+  </div>
+
+</ion-content>

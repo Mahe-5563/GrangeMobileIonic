@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Students</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button class="btn_create_module" [routerLink]="['/students/add']">
+    <ion-icon name="add"></ion-icon>&nbsp;&nbsp;Add New Student
+  </ion-button>
+  <div *ngIf="students">
+    <ion-list *ngFor="let student of students">
+      <ion-item button (click)="currentStudent(student.studentID)">
+        {{student.firstName}} {{student.lastName}}
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

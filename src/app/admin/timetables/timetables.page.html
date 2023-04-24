@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Modules</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button class="btn_create_module" [routerLink]="['/modules/add']">
+    <ion-icon name="add"></ion-icon>&nbsp;&nbsp;Add New Module
+  </ion-button>
+  <div *ngIf="modules">
+    <ion-list *ngFor="let module of modules">
+      <ion-item button (click)="currentModule(module.moduleNo)">
+        {{module.moduleNo}} - {{module.moduleName}}
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -7,8 +7,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule],
+  imports: [
+    IonicModule, 
+    CommonModule,
+  ],
 })
+
+
 export class AppComponent {
   public environmentInjector = inject(EnvironmentInjector);
 

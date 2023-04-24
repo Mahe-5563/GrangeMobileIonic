@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Welcome Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button
+    class="btn-assignments"
+    fill="solid"
+    color="dark"
+    (click)="fetchLecturers()"
+  >
+    Assignments
+  </ion-button>
+  <ion-button
+    class="btn-logout"
+    (click)="reload()"
+    fill="outline"
+  >
+    Logout
+  </ion-button>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Select a Lecturer</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding" *ngIf="lecturers">
+        <ion-list *ngFor="let lecturer of lecturers">
+          <ion-item button (click)="selectedLecturer(lecturer.staffNumber)">
+            {{lecturer.firstName}} {{lecturer.lastName}}
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

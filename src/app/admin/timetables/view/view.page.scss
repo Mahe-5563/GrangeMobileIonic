@@ -1,0 +1,40 @@
+.content {
+    margin-bottom: 100px;
+
+    h2 {
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+    
+    h5 {
+        font-size: 14px;
+    }
+    
+    .input-field {
+        background: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid blue;
+        padding-bottom: 7px;
+        width: 100%;
+        &:focus, &:focus-visible {
+            box-shadow: none;
+            border: none;
+        }
+    }
+
+    .card-list {
+        padding-left: 10px;
+    }
+}
+
+.bottom-nav-bar {
+    position: fixed;
+    bottom: 0;
+    background: var(--ion-color-light);
+    width: 100%;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-evenly;
+}

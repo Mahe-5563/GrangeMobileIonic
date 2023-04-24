@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <!-- <ion-toolbar>
+    <ion-title>loginsignup</ion-title>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <!-- <ion-title size="large">loginsignup</ion-title> -->
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-img 
+    class="col-logo"
+    src="https://www.tudublin.ie/media/website/site-assets/images/tu-dublin-logo-blue.svg"
+    alt="TU Dublin logo"
+  />
+
+  <div class="container">
+    <form #form="ngForm" (ngSubmit)="submitValue()" novalidate>
+      <ion-input 
+        class="form-input" 
+        fill="solid" 
+        [(ngModel)]="userId" 
+        label="User Id" 
+        labelPlacement="floating" 
+        name="userId" 
+        aria-required
+      >
+      </ion-input>
+      <ion-input 
+        class="form-input" 
+        fill="solid" 
+        [(ngModel)]="pwd" 
+        label="Password" 
+        labelPlacement="floating" 
+        type="password" 
+        name="pwd" 
+        aria-required
+      >
+      </ion-input>
+      <!-- <ion-list>
+        <ion-item>
+          <ion-select placeholder="Select Login Type" interface="popover" (ionChange)="setValue($event)">
+            <ion-select-option value="lecturer">Lecturer</ion-select-option>
+            <ion-select-option value="studentin">Student</ion-select-option>
+            <ion-select-option value="admin">Admin</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list> -->
+      <ion-button class="submit-btn" type="submit"> Submit </ion-button>
+    </form>
+    <!-- <ion-button (click)="openActionSheet()">
+      CLICK
+    </ion-button> -->
+  </div>
+  <ion-alert
+    [header]="header"
+    [message]="message"
+    [isOpen]="isAlertOpen"
+    (didDismiss)="setOpen(false)"
+    [buttons]="buttons"
+  >
+
+  </ion-alert>
+</ion-content>

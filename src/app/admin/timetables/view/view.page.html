@@ -1,0 +1,150 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="module">
+      {{module.moduleName}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="module">
+  <div class="content">
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Module No</strong></h2>
+        <h5>{{module.moduleNo}}</h5>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Module Name</strong></h2>
+        <h5>{{module.moduleName}}</h5>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card *ngIf="lecturers">
+      <ion-card-content>
+        <h2><strong>Lecturers in this module</strong></h2>
+        <ion-list class="card-list" *ngFor="let lecturer of lecturers">
+          <h5>{{lecturer.firstName}} {{lecturer.lastName}}</h5>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="students">
+      <ion-card-content>
+        <h2><strong>Students in this module</strong></h2>
+        <ion-list class="card-list" *ngFor="let student of students">
+          <h5>{{student.firstName}} {{student.lastName}}</h5>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Due Date</strong></h2>
+        <ion-input
+          id="dueDate"
+          class="input-field"
+          type="date" 
+          [value]="module.dueDate"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Room</strong></h2>
+        <ion-input
+          id="room"
+          class="input-field"
+          type="text" 
+          [value]="module.room"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Location</strong></h2>
+        <ion-input
+          id="location"
+          class="input-field"
+          type="text" 
+          [value]="module.location"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Credits</strong></h2>
+        <ion-input
+          id="credits"
+          class="input-field"
+          type="text" 
+          [value]="module.credits"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Website</strong></h2>
+        <ion-input
+          id="website"
+          class="input-field"
+          type="text" 
+          [value]="module.website"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <google-map 
+          #myGoogleMap 
+          height="430px" 
+          width="100%" 
+          [zoom]="zoom"
+        >
+
+          <map-marker 
+            #markerElem="mapMarker" 
+            *ngIf="module" 
+            [position]="position"
+          >
+          </map-marker>
+
+        </google-map>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+  <div class="bottom-nav-bar">
+    <ion-button
+      (click)="deletionConfirmation()"
+    >
+      Delete
+    </ion-button>
+    <ion-button
+      (click)="saveModuleDetails()"
+    >
+      Save
+    </ion-button>
+  </div>
+
+</ion-content>

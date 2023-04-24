@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="lecturer">
+      {{lecturer.firstName}} - {{lecturer.lastName}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="lecturer">
+  <div class="content">
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Staff Number</strong></h2>
+        <h5>{{lecturer.staffNumber}}</h5>
+      </ion-card-content>
+    </ion-card>
+    
+    <!-- <ion-card>
+      <ion-card-content>
+        <h2><strong>Lecturer Name</strong></h2>
+        <h5>{{lecturer.moduleName}}</h5>
+      </ion-card-content>
+    </ion-card> -->
+    
+    <ion-card *ngIf="modules">
+      <ion-card-content>
+        <h2><strong>Modules</strong></h2>
+        <ion-list class="card-list" *ngFor="let module of modules">
+          <h5>{{module.moduleNo}} - {{module.moduleName}}</h5>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="students">
+      <ion-card-content>
+        <h2><strong>Students</strong></h2>
+        <ion-list class="card-list" *ngFor="let student of students">
+          <h5>{{student.firstName}} {{student.lastName}}</h5>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h2><strong>Email</strong></h2>
+        <ion-input
+          id="email"
+          class="input-field"
+          type="text" 
+          [value]="lecturer.email"
+          (ionInput)="onInput($event)"
+        >
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+  
+  <div class="bottom-nav-bar">
+    <ion-button
+      (click)="deletionConfirmation()"
+    >
+      Delete
+    </ion-button>
+    <ion-button
+      (click)="saveLecturerDetails()"
+    >
+      Save
+    </ion-button>
+  </div>
+
+</ion-content>

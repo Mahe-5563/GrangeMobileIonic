@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Module</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="add_body">
+  <ion-card>
+    <ion-card-content>
+      <ion-input 
+        id="moduleNo"
+        class="input_field"
+        type="text" 
+        label="Module Id"
+        labelPlacement="floating"
+        [value]="moduleDetails.moduleNo"
+        [readonly]="true"
+        [disabled]="true"
+      >
+      </ion-input>
+      <ion-input
+        id="moduleName"
+        class="input_field"
+        type="text" 
+        label="Name of the module *"
+        labelPlacement="floating"
+        [value]="moduleDetails.moduleName"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="credits"
+        class="input_field"
+        type="text" 
+        label="Credits *"
+        labelPlacement="floating"
+        [value]="moduleDetails.credits"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="website"
+        class="input_field"
+        type="text" 
+        label="Website *"
+        labelPlacement="floating"
+        [value]="moduleDetails.website"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="dueDate"
+        class="input_field"
+        type="date" 
+        label="Due Date *"
+        labelPlacement="floating"
+        [value]="moduleDetails.dueDate"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="location"
+        class="input_field"
+        type="text" 
+        label="Location *"
+        labelPlacement="floating"
+        [value]="moduleDetails.location"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-input 
+        id="room"
+        class="input_field"
+        type="text" 
+        label="Room No. *"
+        labelPlacement="floating"
+        [value]="moduleDetails.room"
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+      <ion-button 
+        class="btn-add-module"
+        (click)="verifyAllDetails()"
+      >
+        Add Module
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
