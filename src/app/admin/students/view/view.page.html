@@ -49,8 +49,22 @@
     <ion-card *ngIf="modules">
       <ion-card-content>
         <h2><strong>Modules</strong></h2>
-        <ion-list class="card-list" *ngFor="let module of modules">
-          <h5>{{module.moduleNo}} - {{module.moduleName}}</h5>
+        <ion-list class="card-list" *ngFor="let module of modules; let i = index" [attr.data-index]="i">
+          <ion-select
+            [id]="'moduleNo'+(i+1)"
+            class="input-field"
+            [placeholder]="'Select Module' + (i+1)" 
+            interface="popover" 
+            (ionChange)="onInput($event)"
+            [value]="module.moduleNo"
+          >
+            <ion-select-option 
+              *ngFor="let allmodule of allModules"
+              [value]="allmodule.moduleNo"
+            >
+              {{allmodule.moduleName}}
+            </ion-select-option>
+          </ion-select>
         </ion-list>
       </ion-card-content>
     </ion-card>

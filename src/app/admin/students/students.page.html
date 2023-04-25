@@ -5,9 +5,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button class="btn_create_module" [routerLink]="['/students/add']">
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom" >
+    <ion-fab-button [routerLink]="['/students/add']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- <ion-button class="btn_create_module" [routerLink]="['/students/add']">
     <ion-icon name="add"></ion-icon>&nbsp;&nbsp;Add New Student
-  </ion-button>
+  </ion-button> -->
   <div *ngIf="students">
     <ion-list *ngFor="let student of students">
       <ion-item button (click)="currentStudent(student.studentID)">

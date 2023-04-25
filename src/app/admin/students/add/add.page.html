@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Add Module</ion-title>
+    <ion-title>Add Student</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -41,26 +41,34 @@
         (ionInput)="onInput($event)"
       >
       </ion-input>
-      <ion-input 
+      <ion-select
         id="moduleNo1"
         class="input_field"
-        type="text" 
-        label="Module One *"
-        labelPlacement="floating"
-        [value]="studentDetails.moduleNo1"
-        (ionInput)="onInput($event)"
+        placeholder="Select Module One" 
+        interface="popover" 
+        (ionChange)="setValue($event)"
       >
-      </ion-input>
-      <ion-input 
+        <ion-select-option 
+          *ngFor="let module of modules"
+          [value]="module.moduleNo"
+        >
+          {{module.moduleName}}
+        </ion-select-option>
+      </ion-select>
+      <ion-select
         id="moduleNo2"
         class="input_field"
-        type="text" 
-        label="Module Two *"
-        labelPlacement="floating"
-        [value]="studentDetails.moduleNo2"
-        (ionInput)="onInput($event)"
+        placeholder="Select Module Two" 
+        interface="popover" 
+        (ionChange)="setValue($event)"
       >
-      </ion-input>
+        <ion-select-option 
+          *ngFor="let module of modules"
+          [value]="module.moduleNo"
+        >
+          {{module.moduleName}}
+        </ion-select-option>
+      </ion-select>
       <ion-input 
         id="courseID"
         class="input_field"
@@ -75,7 +83,7 @@
         class="btn-add-module"
         (click)="verifyAllDetails()"
       >
-        Add Module
+        Add Student
       </ion-button>
     </ion-card-content>
   </ion-card>

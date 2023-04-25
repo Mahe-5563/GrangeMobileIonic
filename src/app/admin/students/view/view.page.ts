@@ -19,6 +19,7 @@ import { NavigationsService } from 'src/app/service/common/navigations/navigatio
 export class ViewPage implements OnInit {
 
   studentId: any;
+  allModules: any;
   modules: any;
   student: any;
   lecturers: any;
@@ -46,15 +47,12 @@ export class ViewPage implements OnInit {
     if(this.studentId) {
 
       await this.studentServices.getStudents().then(res => {
-        console.info(this.studentId)
-        console.info(res.students)
         this.student = res.students.filter(
           (student: { studentID: any }) => 
             (student.studentID == this.studentId ))[0]
-        console.info(this.student)
-        this.updateStudent = res.students.filter(
-          (student: { studentID: any }) => 
-            (student.studentID == this.studentId ))[0]
+        this.updateStudent = {
+          ...this.student
+        }
 
         const studentModules = [
           this.student.moduleNo1,
@@ -66,6 +64,7 @@ export class ViewPage implements OnInit {
             (module: { moduleNo: any }) => 
               (module.moduleNo == studentModules[0] || (module.moduleNo == studentModules[1]))
           )
+          this.allModules = res.modules;
         });
         this.lecturerServices.getLecturers().then(res => {
           this.lecturers = res.lecturers.filter(
@@ -89,7 +88,7 @@ export class ViewPage implements OnInit {
   deletionConfirmation() {
     this.navService.setAlertWBtns(
       "Warning!",
-      "Are you sure you want to Delete? You will not be able to retrieve the modules",
+      "Are you sure you want to Delete? You will not be able to retrieve the student",
       [
         {
           text: "Delete",
@@ -110,7 +109,7 @@ export class ViewPage implements OnInit {
 
   async deleteStudent () {
     this.studentServices.deleteStudent(this.studentId, (res: any) => {
-      this.navService.setAlert("Success!", "Module Deleted Successfully!", true);
+      this.navService.setAlert("Success!", "Student Deleted Successfully!", true);
     });
   }
 

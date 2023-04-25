@@ -22,7 +22,6 @@ export class LecturersPage implements OnInit {
     (await fetch("http://localhost:8888/php/json-data-lecturers.php"))
       .json()
       .then(res => {
-        console.info(res?.lecturers);
         this.lecturers = res?.lecturers;
       })
       .catch(err => {
@@ -31,7 +30,6 @@ export class LecturersPage implements OnInit {
   }
 
   currentLecturer (lecturerId: string) {
-    console.info(lecturerId);
     this.navigationService.navigateToRoute(`lecturers/view/${lecturerId}`)
   }
 

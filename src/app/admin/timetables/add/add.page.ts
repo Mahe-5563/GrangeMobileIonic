@@ -47,14 +47,12 @@ export class AddPage implements OnInit {
 
   verifyAllDetails () {
     let allDetailsPresent = true;
-    console.info("module details: ", this.moduleDetails);
     for(let values of Object.values(this.moduleDetails)) {
       if(values == "") { allDetailsPresent = false; break; }
     }
 
     if(allDetailsPresent) {
       this.adminServices.createModule(this.moduleDetails, (res: any) => {
-        console.info(res);
 
       })
     } else {

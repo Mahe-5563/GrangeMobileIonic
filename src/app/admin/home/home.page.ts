@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 import { NavigationsService } from 'src/app/service/common/navigations/navigations.service';
-import { LecturersService } from 'src/app/service/lecturers/lecturers.service';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private navService: NavigationsService, 
-    private lecService: LecturersService,
+    private modalController: ModalController,
   ) { }
 
   ngOnInit() {
@@ -33,38 +34,11 @@ export class HomePage implements OnInit {
     this.navService.navigateToRoute("");
   }
 
-  setOpen(bool: boolean) {
-    this.isModalOpen = bool;
-  }
-
-  fetchLecturers() {
-    if(!this.lecturers) {
-      this.lecService.getLecturers().then(res => {
-        if(res.lecturers) {
-          this.lecturers = res.lecturers;
-          this.setOpen(true);
-        } else {
-          this.navService.setAlertWBtns(
-            "Oops!", 
-            "Looks like we cannot fetch the list of lecturers and their assignments. Please try again later", 
-            [
-              {
-                text: "OK",
-                role: "dismiss",
-              }
-            ], 
-            false
-          )
-        }
-      })
-    } else {
-      this.setOpen(true);
-    }
-  }
-
-  selectedLecturer(lecturerID: string) {
-    console.info(lecturerID);
-    this.navService.navigateToRoute(`assignments/view/${lecturerID}`);
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: ModalComponent
+    })
+    modal.present();
   }
 
 }

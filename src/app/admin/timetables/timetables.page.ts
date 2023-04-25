@@ -23,7 +23,6 @@ export class TimetablesPage implements OnInit {
     (await fetch("http://localhost:8888/php/json-data-modules.php"))
       .json()
       .then(res => {
-        console.info(res?.modules);
         this.modules = res?.modules;
       })
       .catch(err => {
@@ -32,7 +31,6 @@ export class TimetablesPage implements OnInit {
   }
 
   currentModule (currentModule: string) {
-    console.info(currentModule);
     this.navigationService.navigateToRoute(`modules/view/${currentModule}`)
   }
 }

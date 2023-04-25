@@ -5,9 +5,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button class="btn_create_module" [routerLink]="['/lecturers/add']">
-    <ion-icon name="add"></ion-icon>&nbsp;&nbsp;Add New Lecturer
-  </ion-button>
   <div *ngIf="lecturers">
     <ion-list *ngFor="let lecturer of lecturers">
       <ion-item button (click)="currentLecturer(lecturer.staffNumber)">

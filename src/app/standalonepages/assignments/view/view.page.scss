@@ -1,0 +1,44 @@
+.btn-new-assignment {
+    display: block;
+    margin: 20px;
+    height: 70px;
+    font-size: 18px;
+}
+
+.input-field {
+    border-bottom: 1px solid var(--ion-color-primary);
+    margin-bottom: 20px;
+}
+
+.checkbox-field {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-create-assignment {
+    display: block;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+h4, div, p {
+    margin-bottom: 10px;
+}
+
+ion-toggle {
+    vertical-align: middle;
+}
+
+.btn-view {
+    margin-top: 30px;
+}

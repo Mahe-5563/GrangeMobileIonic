@@ -82,7 +82,6 @@ export class LoginsignupPage implements OnInit  {
             const isLecturerPresent = res.lecturers.filter((lecturer: { staffNumber: string | undefined; }) => lecturer.staffNumber == this.userId).length > 0;
 
             if(isLecturerPresent) {
-              console.info("Lecturer Present!");
               // Proceed with lecturer flow
               this.navigationService.navigateToRoute('/lecturer/tablinks/home');
             } else {
@@ -97,7 +96,6 @@ export class LoginsignupPage implements OnInit  {
             const isStudentPresent = res.students.filter((student: { studentID: string | undefined; }) => student.studentID == this.userId).length > 0;
 
             if(isStudentPresent) {
-              console.info("Student Present!");
               // Proceed with student flow
             } else {
               this.setAlert("Yikes!", "Invalid Credentials");

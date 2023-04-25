@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Assignment</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content *ngIf="updatedAssignment">
+      <ion-input
+        id="name"
+        class="input-field"
+        type="text" 
+        label="Title of the Assignment"
+        labelPlacement="floating"
+        (ionInput)="onInput($event)"
+        [value]="updatedAssignment.name"
+      >
+      </ion-input>
+      <ion-textarea
+        id="content"
+        class="input-field"
+        labelPlacement="floating"
+        label="Assignment Content"
+        [autoGrow]="true"
+        (ionInput)="onInput($event)"
+        [value]="updatedAssignment.content"
+      >
+      </ion-textarea>
+      <ion-input
+        id="dueDate"
+        class="input-field"
+        type="date" 
+        label="Due Date"
+        labelPlacement="floating"
+        (ionInput)="onInput($event)"
+        [value]="updatedAssignment.dueDate"
+      >
+      </ion-input>
+      <ion-checkbox
+        id="isVisible"
+        class="checkbox-field"
+        [checked]="updatedAssignment.isVisible"
+        [value]="updatedAssignment.isVisible"
+        (ionChange)="changeVisible($event)"
+      >
+        Visible to Students?
+      </ion-checkbox>
+      <ion-input
+        id="attachment"
+        type="file" 
+        (ionInput)="onInput($event)"
+      >
+      </ion-input>
+    </ion-card-content>
+  </ion-card>
+  <div class="btns-cta-modal">
+    <ion-button
+      class="btn-create-assignment"
+      color="success"
+      (click)="updateAssignment()"
+    >
+      <ion-icon name="save-outline"></ion-icon>&nbsp;&nbsp;Update
+    </ion-button> 
+    <ion-button
+      class="btn-create-assignment"
+      fill="outline"
+      color="danger"
+      (click)="deleteAssignment()"
+    >
+      <ion-icon name="trash-outline"></ion-icon>&nbsp;&nbsp;Delete
+    </ion-button>
+  </div> 
+</ion-content>

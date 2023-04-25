@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select a Lecturer</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="lecturers">
+  <ion-list *ngFor="let lecturer of lecturers">
+    <ion-item button (click)="selectedLecturer(lecturer.staffNumber)">
+      {{lecturer.firstName}} {{lecturer.lastName}}
+    </ion-item>
+  </ion-list>
+</ion-content>
