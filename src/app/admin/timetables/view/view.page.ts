@@ -56,7 +56,7 @@ export class ViewPage implements OnInit {
     this.moduleId = this.activatedRoute.snapshot.paramMap.get("id");
 
     if(this.moduleId) {
-      await this.adminServices.getModules().then(res => {
+      await this.adminServices.getModules().then((res: any) => {
         this.module = res.modules.filter((module: { moduleNo: any; }) => module.moduleNo == this.moduleId)[0];
         this.updateModule = res.modules.filter((module: { moduleNo: any; }) => module.moduleNo == this.moduleId)[0];
         this.position = {

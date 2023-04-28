@@ -54,7 +54,7 @@ export class ViewPage implements OnInit {
           this.lecturer.moduleNo2
         ]
         
-        this.adminServices.getModules().then(res => {
+        this.adminServices.getModules().then((res: any) => {
           this.modules = res.modules.filter(
             (module: { moduleNo: any }) => 
               (module.moduleNo == lecturerModules[0] || (module.moduleNo == lecturerModules[1]))

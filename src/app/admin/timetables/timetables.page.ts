@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { NavigationsService } from 'src/app/service/common/navigations/navigations.service';
+import { AdminService } from 'src/app/service/admin/admin.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-timetables',
@@ -17,17 +19,17 @@ export class TimetablesPage implements OnInit {
 
   modules: any;
 
-  constructor(private navigationService: NavigationsService) { }
+  constructor(
+    private navigationService: NavigationsService,
+    private adminService: AdminService,
+  ) { }
 
   async ngOnInit() {
-    (await fetch("http://localhost:8888/php/json-data-modules.php"))
-      .json()
-      .then(res => {
-        this.modules = res?.modules;
-      })
-      .catch(err => {
-        console.info(err);
-      })
+    this.adminService.getModules().then(res => {
+      this.modules = res.modules
+    }).catch(err => {
+      console.error(err);
+    })
   }
 
   currentModule (currentModule: string) {

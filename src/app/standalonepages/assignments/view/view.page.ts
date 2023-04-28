@@ -52,7 +52,7 @@ export class ViewPage implements OnInit {
     
     this.lecService.getLecturers().then((res) => {
       this.currentLecturer = res.lecturers.filter((lec: any) => lec.staffNumber == lecturerID)[0];
-      this.adminService.getModules().then(res => {
+      this.adminService.getModules().then((res: any) => {
         this.lecturerModules = res.modules.filter((module: any) => module.moduleNo == this.currentLecturer.moduleNo1 || module.moduleNo == this.currentLecturer.moduleNo2);
       })
     })

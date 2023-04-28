@@ -36,7 +36,7 @@ export class AddPage implements OnInit {
 
   async ngOnInit() {
     this.adminServices.getModules()
-      .then(res => {
+      .then((res: any) => {
         const lastModule = res.modules[res.modules.length - 1];
         this.moduleDetails.moduleNo = Number(lastModule.moduleNo) + 1;
       })

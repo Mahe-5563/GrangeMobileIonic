@@ -45,7 +45,7 @@ export class AddPage implements OnInit {
       })
 
     this.adminService.getModules()
-      .then(res => {
+      .then((res: any) => {
         this.modules = res.modules;
       })
   }
