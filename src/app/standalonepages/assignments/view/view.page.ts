@@ -23,12 +23,13 @@ export class ViewPage implements OnInit {
   assignment = {
     attachment: "",
     content: "",
-    createdDate: "",
+    createdDate: +new Date(),
     dueDate: "",
     isVisible: false,
     lecturerId: 0,
     moduleId: 0,
     name: "",
+    imgUrl: ""
   }
 
   isModalOpen = false;
@@ -36,6 +37,7 @@ export class ViewPage implements OnInit {
   currentLecturerAssignments: any;
   isAssignmentsPresent: boolean | undefined;
   lecturerModules: any;
+  assignmentAttachment: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -77,6 +79,7 @@ export class ViewPage implements OnInit {
 
     if(ev.target.id == "attachment") {
       value = `${new Date().getTime()}_${value.split("\\")[2]}`
+      this.assignmentAttachment = ev.target.files[0];
     }
 
     this.assignment = {
@@ -85,14 +88,15 @@ export class ViewPage implements OnInit {
     }
   }
 
-  createAssignment() {
+  createAssignment(ev: any) {
     this.assignment = {
       ...this.assignment,
       lecturerId: this.currentLecturer.staffNumber,
       moduleId: Number(this.assignment.moduleId),
     }
-
-    this.adminService.createAssignment(this.assignment, (success: boolean) => {
+    ev.target.innerHTML = "Creating...";
+    ev.target.disabled = true;
+    this.adminService.createAssignment(this.assignment, this.assignmentAttachment, (success: boolean) => {
       if(success) {
         this.setAlert(
           "Success!", 

@@ -51,8 +51,9 @@
       </ion-checkbox>
       <ion-input
         id="attachment"
-        type="file" 
-        (ionInput)="onInput($event)"
+        type="file"
+        [value] = "updatedAssignment.attachment"
+        (change)="onInput($event)"
       >
       </ion-input>
     </ion-card-content>

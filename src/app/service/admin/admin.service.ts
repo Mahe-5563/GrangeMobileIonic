@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable } from "rxjs";
+import { Observable, from, switchMap } from "rxjs";
 import { 
   Firestore, 
   collection, 
@@ -22,6 +22,7 @@ export interface Assignment {
   lecturerId: Number,
   moduleId: Number,
   name: string,
+  imgUrl: string,
 }
 
 @Injectable({
@@ -39,6 +40,7 @@ export class AdminService {
     lecturerId: 0,
     moduleId: 0,
     name: "",
+    imgUrl: "",
   };
 
   constructor(
@@ -116,15 +118,31 @@ export class AdminService {
     }
   }
 
-  createAssignment(assignment: any, response: Function) {
+  createAssignment(assignment: any, attachment: any, response: Function) {
     const ref = collection(this.firestore, "assignments")
-    addDoc(ref, assignment)
-      .then(() => {
-        response(true)
-      })
-      .catch(() => {
-        response(false)
-      });
+    if(attachment) {
+      const storageRef = this.firestorage.storage.ref('assignments/attachments/' + assignment.attachment)
+      storageRef
+        .put(attachment)
+        .then(snapshot => {
+          snapshot.ref.getDownloadURL().then(url => {
+            assignment.imgUrl = url;
+            addDocument();
+          })
+        })
+    } else {
+      addDocument();
+    }
+
+    function addDocument () {
+      addDoc(ref, assignment)
+        .then(() => {
+          response(true)
+        })
+        .catch(() => {
+          response(false)
+        });
+    }
   }
 
   updateAssignment(updateAssignment: any, response: Function) {

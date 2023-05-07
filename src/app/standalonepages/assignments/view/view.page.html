@@ -26,7 +26,7 @@
     >
       <ion-card-content>
         <h2>{{assignment.name}}</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida efficitur semper. In ultrices maximus lorem. Nam et dui eget eros dapibus interdum sed faucibus tortor. In vel neque dolor. Vestibulum egestas sem lectus, id facilisis eros venenatis id. Sed id felis in velit placerat dictum sit amet ac nisl. Pellentesque ullamcorper consectetur fringilla. Proin accumsan aliquet finibus. Nunc pulvinar volutpat ex a congue. Etiam posuere dolor ipsum, eu mollis eros pulvinar vel. Mauris mollis suscipit libero, id placerat neque lobortis nec. Integer sagittis a mi nec scelerisque.</p>
+        <p>{{assignment.content}}</p>
         <h4><strong>Module: </strong> {{assignment.moduleId}} </h4>
         <div>
           <label><strong>Visible to Students:&nbsp;&nbsp;&nbsp;</strong></label>
@@ -65,6 +65,7 @@
         <ion-card>
           <ion-card-content>
             <ion-input
+              required
               id="name"
               class="input-field"
               type="text" 
@@ -75,16 +76,17 @@
             >
             </ion-input>
             <ion-textarea
+              required
               id="content"
               class="input-field"
               labelPlacement="floating"
               label="Assignment Content"
-              [autoGrow]="true"
               (ionInput)="onInput($event)"
               [value]="assignment.content"
             >
             </ion-textarea>
             <ion-select
+              required
               id="moduleId"
               class="input-field"
               placeholder="Select the module" 
@@ -100,6 +102,7 @@
               </ion-select-option>
             </ion-select>
             <ion-input
+              required 
               id="dueDate"
               class="input-field"
               type="date" 
@@ -117,15 +120,15 @@
             >
               Visible to Students?
             </ion-checkbox>
-            <ion-input
+            <input
               id="attachment"
               type="file" 
-              (ionInput)="onInput($event)"
+              (change)="onInput($event)"
             >
-            </ion-input>
             <ion-button
+              id="createAssignment"
               class="btn-create-assignment"
-              (click)="createAssignment()"
+              (click)="createAssignment($event)"
             >
               Create Assignment
             </ion-button>
