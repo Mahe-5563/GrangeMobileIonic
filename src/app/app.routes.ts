@@ -41,4 +41,8 @@ export const routes: Routes = [
     path: 'assignments/create',
     loadComponent: () => import('./standalonepages/assignments/create/create.page').then( m => m.CreatePage)
   },
+  {
+    path: 'tweets',
+    loadComponent: () => import('./standalonepages/tweets/tweets.page').then( m => m.TweetsPage)
+  },
 ];

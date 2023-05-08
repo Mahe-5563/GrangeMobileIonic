@@ -1,0 +1,39 @@
+.text-center {
+    text-align: center;
+}
+
+.div-flex-container {
+    display: flex;
+}
+
+.tweet-logo {
+    height: 40px;
+    width: 40px;
+}
+
+.tweet-header {
+    margin: auto 15px;
+    margin-right: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+        
+    h6, span {
+        margin-top: 0;
+        margin-bottom: 5px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+.action-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+small {
+    margin-top: 15px;
+    display: block;
+}

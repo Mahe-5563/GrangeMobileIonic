@@ -6,18 +6,21 @@ import { ModalController } from '@ionic/angular';
 
 import { NavigationsService } from 'src/app/service/common/navigations/navigations.service';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { RouterModule } from '@angular/router';
+import { instaJSON } from 'src/app/json/sample';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class HomePage implements OnInit {
 
   isModalOpen: boolean | undefined;
   lecturers: any;
+  instaDetails: any;
 
   constructor(
     private navService: NavigationsService, 
@@ -25,7 +28,9 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("Hi there!")
+    // console.log("Hi there!")
+    console.info(instaJSON);
+    this.instaDetails = instaJSON.user;
   }
 
   reload() {

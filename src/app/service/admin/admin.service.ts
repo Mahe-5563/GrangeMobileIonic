@@ -94,30 +94,6 @@ export class AdminService {
     return collectionData(ref, {idField: 'id'}) as Observable<Assignment[]>;
   }
 
-  async addToFirebaseStorage(attachmentData: any) {
-    try {
-      const attachmentName = new Date().getTime() + "_helloworld";
-    
-      return new Promise((resolve, reject) => {
-        const attachmentRef = this.firestorage.ref("/assignments/attachments/"+attachmentName);
-
-        attachmentRef
-          .put(attachmentData)
-          .then(() => {
-            attachmentRef.getDownloadURL().subscribe(url => {
-              resolve(url);
-            })
-          })
-          .catch(err => {
-            reject(err);
-          })
-      })
-    } catch (e) {
-      console.error("catcH: ", e);
-      return e;
-    }
-  }
-
   createAssignment(assignment: any, attachment: any, response: Function) {
     const ref = collection(this.firestore, "assignments")
     if(attachment) {
@@ -165,5 +141,22 @@ export class AdminService {
       .catch(() => {
         response(false)
       })
+  }
+
+  getTwitterUsersTweets(callback: Function) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open(
+      "GET", 
+      `https://twitter154.p.rapidapi.com/user/tweets?username=WeAreTUDublin&limit=10&user_id=95665759&include_replies=false&include_pinned=false`, 
+      true);
+    xhttp.setRequestHeader('X-RapidAPI-Key', '576cc2024bmsh96cbb76b62dbbbap1ac639jsn45a706953d88')
+    xhttp.setRequestHeader('X-RapidAPI-Host', 'twitter154.p.rapidapi.com')
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        console.info(JSON.parse(this.responseText));
+        callback(JSON.parse(this.responseText));
+      }
+    }
+    xhttp.send();
   }
 }

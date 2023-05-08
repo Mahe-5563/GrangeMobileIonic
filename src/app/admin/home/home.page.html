@@ -8,6 +8,33 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-card *ngIf="instaDetails">
+    <ion-card-content>
+      <div>
+        <ion-icon name="logo-instagram"></ion-icon>
+        <h5>{{instaDetails.full_name}}</h5>
+        <small>{{instaDetails.category}} </small>
+        <div class="fol_cat">
+          <div class="text-center">
+            <h6>Follower</h6>
+            <h6><strong>{{instaDetails.follower_count}}</strong></h6>
+          </div>
+          <div class="text-center">
+            <h6>Following</h6>
+            <h6><strong>{{instaDetails.following_count}}</strong></h6>
+          </div>
+        </div>
+      </div>
+      <h6>{{instaDetails.biography}}</h6>
+    </ion-card-content>
+  </ion-card>
+  <ion-button
+    class="btn-logout"
+    (click)="reload()"
+    fill="outline"
+  >
+    Logout
+  </ion-button>
   <ion-button
     class="btn-assignments"
     fill="solid"
@@ -17,10 +44,11 @@
     Assignments
   </ion-button>
   <ion-button
-    class="btn-logout"
-    (click)="reload()"
+    class="btn-assignments"
     fill="outline"
+    color="dark"
+    [routerLink]="['/tweets']"
   >
-    Logout
+    Tweets
   </ion-button>
 </ion-content>

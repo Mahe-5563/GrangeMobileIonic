@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tweets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!tweets">
+  <h6 class="text-center">Loading Tweets....</h6>
+</ion-content>
+
+<ion-content [fullscreen]="true" *ngIf="tweets">
+  <ion-card *ngFor="let tweet of tweets">
+    <ion-card-header>
+      <div class="div-flex-container">
+        <ion-img 
+          class="tweet-logo"
+          src="https://pbs.twimg.com/profile_images/1548956002573340672/k10piKgI_normal.jpg"
+          alt="TU Dublin logo"
+        /> 
+        <div class="tweet-header">
+          <h6 class="" >{{tweet.user.name}}</h6>
+          <span class="">{{tweet.user.username}}</span>
+        </div>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- <ion-text>{{tweet.text}}</ion-text> -->
+      <p>
+        {{tweet.text}}
+      </p>
+      <div class="action-icons">
+        <p>
+          <ion-icon name="repeat-sharp"></ion-icon>
+          {{tweet.retweet_count}}
+        </p>
+        <p>
+          <ion-icon name="heart-sharp"></ion-icon>
+          {{tweet.favorite_count}}
+        </p>
+        <p>
+          <ion-icon name="eye-sharp"></ion-icon>
+          {{tweet.views}}
+        </p>
+      </div>
+      <small>{{getDate(tweet.creation_date)}}</small>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
