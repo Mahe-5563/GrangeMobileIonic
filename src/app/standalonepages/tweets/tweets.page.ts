@@ -20,9 +20,9 @@ export class TweetsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    /* this.adminService.getTwitterUsersTweets((tweets: any) => {
+    this.adminService.getTwitterUsersTweets((tweets: any) => {
       this.tweets = tweets.results;
-    }) */
+    })
   }
 
   getDate(date: any) {
